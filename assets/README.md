@@ -1,6 +1,6 @@
 # ASSETS
 
-**This directory is not required, you can delete it if you don't want to use it.**
+**用于存放未编译的js less sass 等资源文件**
 
 This directory contains your un-compiled assets such as LESS, SASS, or JavaScript.
 

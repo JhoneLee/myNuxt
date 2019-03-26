@@ -1,6 +1,6 @@
 # myNuxt
 
-> My epic Nuxt.js project
+> 需要自己配置redis 及 mysql，否则无法正常启动
 
 ## Build Setup
 

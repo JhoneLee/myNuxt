@@ -3,7 +3,7 @@
     <div>
       <logo />
       <h1 class="title">
-        myNuxt
+        myNuxt HOME
         <nuxt-link to="/next">
           下一页
         </nuxt-link>
@@ -26,6 +26,9 @@
           class="button--grey"
         >GitHub</a>
       </div>
+      <div>
+        <async-com />
+      </div>
     </div>
   </section>
 </template>
@@ -34,10 +37,15 @@
 import Logo from '~/components/Logo.vue'
 import { mapMutations,mapGetters } from 'vuex';
 import getStore from '~/store/index';
+import higherComponent from '~/components/higherFrameComponent';
+
+let store = getStore();
+let cpts = store.getters.pageTable;
 
 export default {
   components: {
-    Logo
+    Logo,
+    'async-com':higherComponent(cpts)
   },
   methods:{
     ...mapMutations(['setLoginInfo'])
@@ -47,9 +55,9 @@ export default {
   },
   created(){
     // this.setLoginInfo({abc:1000});
-    let store = getStore();
-    console.log(store.getters.loginInfo);
-    console.log(this.loginInfo);
+    // let store = getStore();
+    // console.log(store.getters.loginInfo);
+    // console.log(this.loginInfo);
   }
 }
 </script>

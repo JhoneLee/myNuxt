@@ -1,0 +1,9 @@
+/**
+* @file: 框架api 测试
+* @Author: liyunjiao2048@163.com
+* @Date:   2018-12-19 11:08:11
+ * @Last Modified by:   liyunjiao2048@163.com
+ * @Last Modified time: 2019-03-26 16:40:38
+*/
+/*eslint-disable*/
+import%20Router%20from%20%27koa-router%27%3B%0Aimport%20task%20from%20%27../../sql/task%27%3B%0Alet%20route%20%3D%20new%20Router%28%29%3B%0Alet%20%7BgetDataList%2C%20getFrameByOid%7D%20%3D%20task%3B%0A//%20%u83B7%u53D6%u7528%u6237%u4FE1%u606F%0Aroute.post%28%27/user/info%27%2Casync%20%28ctx%2Cnext%29%3D%3E%7B%0A%20%20%20%20console.log%28ctx.session%29%3B%0A%20%20%20%20const%20%7Boid%2Cuser_name%2Credirect_url%2Crelation%2Cnick_name%7D%20%3D%20ctx.session%3B%0A%20%20%20%20ctx.status%20%3D%20200%3B%0A%20%20%20%20if%28user_name%29%7B%0A%20%20%20%20%20%20%20%20ctx.body%20%3D%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20status%3A0%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20data%3A%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20username%3Auser_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20nickname%3Anick_name%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20redirectUrl%3Aredirect_url%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20relation%3AJSON.parse%28relation%29%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20oid%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20statusInfo%3A%27success%27%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20ctx.body%20%3D%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20status%3A2%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20statusInfo%3A%27%u767B%u5F55%u8FC7%u671F%27%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%29%3B%0A%0Aexport%20default%20route%3B

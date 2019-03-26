@@ -1,42 +1,27 @@
-const Koa = require('koa')
-const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
+/*
+* @Author: liyunjiao2048@163.com
+* @Date:   2019-03-04 11:52:52
+* @Last Modified by:   liyunjiao2048@163.com
+* @Last Modified time: 2019-03-15 11:34:06
+*/
 
-const app = new Koa()
+/*eslint-disable*/
 
-// Import and Set Nuxt.js options
-const config = require('../nuxt.config.js')
-config.dev = !(app.env === 'production')
+var br = require('@babel/register');
 
-async function start() {
-  // Instantiate nuxt.js
-  const nuxt = new Nuxt(config)
+var babelConfig = {
+  "presets": [
+    // ["@babel/env"]  node 9、10 版本没必要用
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-object-rest-spread",{ "loose": true, "useBuiltIns": true }],
+    "@babel/plugin-transform-modules-commonjs",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-async-to-generator"
+  ]
+};
 
-  const {
-    host = process.env.HOST || '127.0.0.1',
-    port = process.env.PORT || 3000
-  } = nuxt.options.server
+br(babelConfig);
 
-  // Build in development
-  if (config.dev) {
-    const builder = new Builder(nuxt)
-    await builder.build()
-  } else {
-    await nuxt.ready()
-  }
-
-  app.use(ctx => {
-    ctx.status = 200
-    ctx.respond = false // Bypass Koa's built-in response handling
-    ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
-    nuxt.render(ctx.req, ctx.res)
-  })
-
-  app.listen(port, host)
-  consola.ready({
-    message: `Server listening on http://${host}:${port}`,
-    badge: true
-  })
-}
-
-start()
+require('./server');
