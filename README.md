@@ -1,4 +1,4 @@
-# myNuxt
+# myNuxt test
 
 > 需要自己配置redis 及 mysql，否则无法正常启动
 
